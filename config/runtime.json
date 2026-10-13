@@ -1,0 +1,15 @@
+{
+  "schema_version": "1",
+  "feature_version": "0.1.0",
+  "decision_delay_minutes": 10,
+  "max_quote_age_seconds": 900,
+  "max_relative_spread": 0.5,
+  "min_quote_coverage": 0.6,
+  "min_training_rows": 120,
+  "ridge_penalty": 10,
+  "ewma_daily_lambda": 0.94,
+  "max_live_alert_age_minutes": 90,
+  "daily_digest_utc_hour": 23,
+  "synthetic": false,
+  "notifications": {"enabled": false, "telegram": true, "email_fallback": true, "daily_email": true}
+}

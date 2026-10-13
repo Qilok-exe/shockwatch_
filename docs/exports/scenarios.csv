@@ -1,0 +1,32 @@
+chronological_openings,chronological_updates,dataset_id,expected_outcome,isolated_closed_events,isolated_opened_events,isolated_updated_events,mode,quality_exclusion_expected,reason,result,scenario_id
+0,0,synthetic_raw_raw-scenarios-2_1537_160_1,expected_no_alert,0,0,0,synthetic,False,Independent scenario replay had no alert,PASS,quiet_liquid
+1,0,synthetic_raw_raw-scenarios-2_1537_160_1,context_only_not_applicable,0,1,0,synthetic,False,Context scenario has no prespecified alert target,NOT_APPLICABLE,seasonal_spike
+1,0,synthetic_raw_raw-scenarios-2_1537_160_1,context_only_not_applicable,0,1,0,synthetic,False,Context scenario has no prespecified alert target,NOT_APPLICABLE,market_stress
+0,1,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,0,1,1,synthetic,False,Independent scenario replay opened an episode,PASS,exceptional_call
+1,0,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,0,1,0,synthetic,False,Independent scenario replay opened an episode,PASS,test_exceptional_call
+0,1,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,0,1,1,synthetic,False,Independent scenario replay opened an episode,PASS,exceptional_put
+0,0,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,1,1,0,synthetic,False,Independent scenario replay opened an episode,PASS,test_exceptional_put
+0,1,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,1,1,0,synthetic,False,Independent scenario replay opened an episode,PASS,repricing
+1,0,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,1,1,0,synthetic,False,Independent scenario replay opened an episode,PASS,test_repricing
+1,1,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,0,1,1,synthetic,False,Independent scenario replay opened an episode,PASS,persistent_price
+1,1,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,1,1,1,synthetic,False,Independent scenario replay opened an episode,PASS,test_persistent_price
+0,0,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,0,1,0,synthetic,False,Independent scenario replay opened an episode,PASS,persistent_oi
+1,0,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,0,1,0,synthetic,False,Independent scenario replay opened an episode,PASS,test_persistent_oi
+0,0,synthetic_raw_raw-scenarios-2_1537_160_1,expected_no_route_b,0,1,0,synthetic,False,No unsupported Route B decision; exceptional Route A may still open,PASS,unsupported_flow
+1,0,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,1,1,0,synthetic,False,Independent scenario replay opened an episode,PASS,flat_oi
+1,0,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,1,1,0,synthetic,False,Independent scenario replay opened an episode,PASS,test_flat_oi
+1,0,synthetic_raw_raw-scenarios-2_1537_160_1,context_only_not_applicable,0,1,0,synthetic,False,Context scenario has no prespecified alert target,NOT_APPLICABLE,offsetting_roll
+1,0,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,0,1,0,synthetic,False,Independent scenario replay opened an episode,PASS,public_event
+1,0,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,1,1,0,synthetic,False,Independent scenario replay opened an episode,PASS,test_public_event
+0,0,synthetic_raw_raw-scenarios-2_1537_160_1,quality_exclusion_expected,0,0,0,synthetic,True,Expected input qualification observed,PASS,quote_faults
+0,0,synthetic_raw_raw-scenarios-2_1537_160_1,quality_exclusion_expected,0,0,0,synthetic,True,Expected input qualification observed,PASS,coverage_faults
+0,0,synthetic_raw_raw-scenarios-2_1537_160_1,quality_exclusion_expected,0,0,0,synthetic,True,Expected input qualification observed,PASS,partial_release
+0,0,synthetic_raw_raw-scenarios-2_1537_160_1,quality_exclusion_expected,0,0,0,synthetic,True,Expected input qualification observed,PASS,late_arrival
+0,0,synthetic_raw_raw-scenarios-2_1537_160_1,context_only_not_applicable,0,0,0,synthetic,False,Context scenario has no prespecified alert target,NOT_APPLICABLE,cumulative_faults
+0,0,synthetic_raw_raw-scenarios-2_1537_160_1,context_only_not_applicable,0,0,0,synthetic,False,Context scenario has no prespecified alert target,NOT_APPLICABLE,corporate_lifecycle
+0,0,synthetic_raw_raw-scenarios-2_1537_160_1,context_only_not_applicable,0,0,0,synthetic,False,Context scenario has no prespecified alert target,NOT_APPLICABLE,calendar_boundaries
+1,0,synthetic_raw_raw-scenarios-2_1537_160_1,context_only_not_applicable,1,1,0,synthetic,False,Context scenario has no prespecified alert target,NOT_APPLICABLE,restart_backfill
+2,0,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,2,2,0,synthetic,False,Independent scenario replay opened an episode,PASS,two_events_week
+2,0,synthetic_raw_raw-scenarios-2_1537_160_1,expected_opening,2,2,0,synthetic,False,Independent scenario replay opened an episode,PASS,test_two_events_week
+2,0,synthetic_raw_raw-scenarios-2_1537_160_1,context_only_not_applicable,2,2,0,synthetic,False,Context scenario has no prespecified alert target,NOT_APPLICABLE,conflicting_outcomes
+2,0,synthetic_raw_raw-scenarios-2_1537_160_1,context_only_not_applicable,2,2,0,synthetic,False,Context scenario has no prespecified alert target,NOT_APPLICABLE,test_conflicting_outcomes

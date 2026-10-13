@@ -1,0 +1,33 @@
+{
+  "built_at": "2026-10-13T15:56:12.467496+00:00",
+  "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+  "file_hashes": {
+    ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "episodes.html": "c787b9e20100ad924c090e3277b3e787b8c0b69209cd47e3e7e1cfd9e23fbf34",
+    "experiments.html": "d561147d2cbc0decb1e0cabc259625a20a73e7a64120f4e108546c9d169c14bf",
+    "exports/episodes.csv": "5e4bbfbdf81a348dc13267c8d2e812613856c306d2826dc19354f207f626f910",
+    "exports/episodes.json": "98a4a6f504cdbca569f8b4ef8c43ed33ba847efecc9bd32c3256bcc6a3cd1239",
+    "exports/experiments.csv": "d2b573d567d9ae15457d35a4f9f00da492012607a5a66b8a420bdd28e6f52e89",
+    "exports/experiments.json": "10df308f408317e9fbe9426305e76896fb22bcde91bac4acf295fb0e3d06ef30",
+    "exports/forecasts.csv": "8fc5b2852f81f15a052daff77cff852dce0ce11c1a367dfa208a6224f40cd838",
+    "exports/forecasts.json": "093f381906044d15b2cabbb6bbd71bf67e30afccb47e830c5aa923a99bda3db3",
+    "exports/scans.csv": "49dfbec6bbb945735312fb9bc1ae816187ebe17021f91c115e2d24ea1efafd6a",
+    "exports/scans.json": "4542776c2980a900460000feb16250abf2637797baacf935f197380262c058fd",
+    "exports/scenarios.csv": "6faf266643acaa1cbf4cc8c037e2750af94f174a399fa75dce3e980d72e1ae2f",
+    "exports/scenarios.json": "8795d12e9909b42715ea96ac842e854f95ecf010c69711495badfa98e18e4a40",
+    "exports/summary.json": "6532cf8fcda933ca07da9bc014f17fdc09920cca65ca035f7992269d14e343d3",
+    "forecasts.html": "935aeab5f2560692dadd12fa6a809fcc1d9cdf782b01705c28b17377f4a5c02a",
+    "health.html": "8968a0ff35ec4bce2029c269d45e91dcb4c80fd208f5821477a462fc7e1635a3",
+    "index.html": "aae1fc2ad47394cbdaf1bbd52bf0d808f55208b5c6b5767c50a2628015200de9",
+    "instruments.html": "f98f9e6d1df73a9d9982897c9eef58d1569b67e61a6e6ddef48dbd4b8cc608f3",
+    "methods.html": "a3033a60453d5faa6425f3cde85761921234a56b375f7443df15215d070b1e92",
+    "publication.json": "921ab164d49b7aca6bb6e797f899803a666edc9212439a295d5bae034f59dca4",
+    "scans.html": "a2faaea85815d96632de6412cce1abad1e913c84d2071febe150dff90155df24",
+    "scenarios.html": "5af00c0ea14adb35ae2a92a6fdc954aaca0190378dda01588c43848dbec7b611",
+    "site.js": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "style.css": "ad0889a760f2f69445ad1d07c600d97bd36d4239b12ffa5c227ec2357a4ace58"
+  },
+  "mode": "synthetic",
+  "model_version": "0.2.0",
+  "source_version": "raw-scenarios-2"
+}

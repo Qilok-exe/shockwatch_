@@ -1,0 +1,382 @@
+[
+  {
+    "closures": 2,
+    "coverage_exclusions": [
+      {
+        "event_group": "test_exceptional_call",
+        "reason": "common_coverage_exclusion"
+      }
+    ],
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "detected_positive_families": 0,
+    "detection_latency_wall_minutes": [],
+    "episode_rate_per_portfolio_week": 0.3333333333333333,
+    "execution": "complete",
+    "expected_negative_families": 0,
+    "expected_positive_families": 7,
+    "false_openings": null,
+    "fold": "fold_001",
+    "method": "stock_only_hourly",
+    "miss_reasons": [
+      {
+        "family": "test_exceptional_put",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_flat_oi",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_persistent_oi",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_persistent_price",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_public_event",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_repricing",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_two_event_outcome_family",
+        "reason": "current_route_evidence_without_new_opening"
+      }
+    ],
+    "missed_positive_families": [
+      "test_exceptional_put",
+      "test_flat_oi",
+      "test_persistent_oi",
+      "test_persistent_price",
+      "test_public_event",
+      "test_repricing",
+      "test_two_event_outcome_family"
+    ],
+    "mode": "synthetic",
+    "performance_status": "FAIL",
+    "updates": 0
+  },
+  {
+    "closures": 7,
+    "coverage_exclusions": [
+      {
+        "event_group": "test_exceptional_call",
+        "reason": "common_coverage_exclusion"
+      }
+    ],
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "detected_positive_families": 6,
+    "detection_latency_wall_minutes": [
+      190.0,
+      190.0,
+      130.0,
+      130.0,
+      190.0,
+      190.0
+    ],
+    "episode_rate_per_portfolio_week": 1.1666666666666667,
+    "execution": "complete",
+    "expected_negative_families": 0,
+    "expected_positive_families": 7,
+    "false_openings": null,
+    "fold": "fold_001",
+    "method": "flow_only_hourly",
+    "miss_reasons": [
+      {
+        "family": "test_repricing",
+        "reason": "no_route_threshold_crossed"
+      }
+    ],
+    "missed_positive_families": [
+      "test_repricing"
+    ],
+    "mode": "synthetic",
+    "performance_status": "FAIL",
+    "updates": 0
+  },
+  {
+    "closures": 2,
+    "coverage_exclusions": [
+      {
+        "event_group": "test_exceptional_call",
+        "reason": "common_coverage_exclusion"
+      }
+    ],
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "detected_positive_families": 2,
+    "detection_latency_wall_minutes": [
+      130.0,
+      190.0
+    ],
+    "episode_rate_per_portfolio_week": 0.3333333333333333,
+    "execution": "complete",
+    "expected_negative_families": 0,
+    "expected_positive_families": 7,
+    "false_openings": null,
+    "fold": "fold_001",
+    "method": "pricing_only_hourly",
+    "miss_reasons": [
+      {
+        "family": "test_exceptional_put",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_flat_oi",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_persistent_oi",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_public_event",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_two_event_outcome_family",
+        "reason": "no_route_threshold_crossed"
+      }
+    ],
+    "missed_positive_families": [
+      "test_exceptional_put",
+      "test_flat_oi",
+      "test_persistent_oi",
+      "test_public_event",
+      "test_two_event_outcome_family"
+    ],
+    "mode": "synthetic",
+    "performance_status": "FAIL",
+    "updates": 1
+  },
+  {
+    "closures": 8,
+    "coverage_exclusions": [
+      {
+        "event_group": "test_exceptional_call",
+        "reason": "common_coverage_exclusion"
+      }
+    ],
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "detected_positive_families": 7,
+    "detection_latency_wall_minutes": [
+      190.0,
+      190.0,
+      130.0,
+      130.0,
+      190.0,
+      190.0,
+      190.0
+    ],
+    "episode_rate_per_portfolio_week": 1.3333333333333333,
+    "execution": "complete",
+    "expected_negative_families": 0,
+    "expected_positive_families": 7,
+    "false_openings": null,
+    "fold": "fold_001",
+    "method": "flow_pricing_hourly",
+    "miss_reasons": [],
+    "missed_positive_families": [],
+    "mode": "synthetic",
+    "performance_status": "PASS",
+    "updates": 1
+  },
+  {
+    "closures": 8,
+    "coverage_exclusions": [
+      {
+        "event_group": "test_exceptional_call",
+        "reason": "common_coverage_exclusion"
+      }
+    ],
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "detected_positive_families": 7,
+    "detection_latency_wall_minutes": [
+      190.0,
+      190.0,
+      130.0,
+      130.0,
+      190.0,
+      190.0,
+      190.0
+    ],
+    "episode_rate_per_portfolio_week": 1.3333333333333333,
+    "execution": "complete",
+    "expected_negative_families": 0,
+    "expected_positive_families": 7,
+    "false_openings": null,
+    "fold": "fold_001",
+    "method": "full_hourly",
+    "miss_reasons": [],
+    "missed_positive_families": [],
+    "mode": "synthetic",
+    "performance_status": "PASS",
+    "updates": 1
+  },
+  {
+    "closures": 8,
+    "coverage_exclusions": [
+      {
+        "event_group": "test_exceptional_call",
+        "reason": "common_coverage_exclusion"
+      }
+    ],
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "detected_positive_families": 7,
+    "detection_latency_wall_minutes": [
+      190.0,
+      190.0,
+      130.0,
+      130.0,
+      190.0,
+      190.0,
+      190.0
+    ],
+    "episode_rate_per_portfolio_week": 1.3333333333333333,
+    "execution": "complete",
+    "expected_negative_families": 0,
+    "expected_positive_families": 7,
+    "false_openings": null,
+    "fold": "fold_001",
+    "method": "full_without_persistence_hourly",
+    "miss_reasons": [],
+    "missed_positive_families": [],
+    "mode": "synthetic",
+    "performance_status": "PASS",
+    "updates": 1
+  },
+  {
+    "closures": 8,
+    "coverage_exclusions": [
+      {
+        "event_group": "test_exceptional_call",
+        "reason": "common_coverage_exclusion"
+      }
+    ],
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "detected_positive_families": 7,
+    "detection_latency_wall_minutes": [
+      190.0,
+      190.0,
+      130.0,
+      130.0,
+      190.0,
+      190.0,
+      190.0
+    ],
+    "episode_rate_per_portfolio_week": 1.3333333333333333,
+    "execution": "complete",
+    "expected_negative_families": 0,
+    "expected_positive_families": 7,
+    "false_openings": null,
+    "fold": "fold_001",
+    "method": "full_without_oi_hourly",
+    "miss_reasons": [],
+    "missed_positive_families": [],
+    "mode": "synthetic",
+    "performance_status": "PASS",
+    "updates": 1
+  },
+  {
+    "closures": 7,
+    "coverage_exclusions": [
+      {
+        "event_group": "test_exceptional_call",
+        "reason": "common_coverage_exclusion"
+      }
+    ],
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "detected_positive_families": 6,
+    "detection_latency_wall_minutes": [
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0
+    ],
+    "episode_rate_per_portfolio_week": 1.1666666666666667,
+    "execution": "complete",
+    "expected_negative_families": 0,
+    "expected_positive_families": 7,
+    "false_openings": null,
+    "fold": "fold_001",
+    "method": "full_daily",
+    "miss_reasons": [
+      {
+        "family": "test_repricing",
+        "reason": "no_route_threshold_crossed"
+      }
+    ],
+    "missed_positive_families": [
+      "test_repricing"
+    ],
+    "mode": "synthetic",
+    "performance_status": "FAIL",
+    "updates": 0
+  },
+  {
+    "closures": 2,
+    "coverage_exclusions": [
+      {
+        "event_group": "test_exceptional_call",
+        "reason": "common_coverage_exclusion"
+      }
+    ],
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "detected_positive_families": 0,
+    "detection_latency_wall_minutes": [],
+    "episode_rate_per_portfolio_week": 0.3333333333333333,
+    "execution": "complete",
+    "expected_negative_families": 0,
+    "expected_positive_families": 7,
+    "false_openings": null,
+    "fold": "fold_001",
+    "method": "stock_only_daily",
+    "miss_reasons": [
+      {
+        "family": "test_exceptional_put",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_flat_oi",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_persistent_oi",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_persistent_price",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_public_event",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_repricing",
+        "reason": "no_route_threshold_crossed"
+      },
+      {
+        "family": "test_two_event_outcome_family",
+        "reason": "current_route_evidence_without_new_opening"
+      }
+    ],
+    "missed_positive_families": [
+      "test_exceptional_put",
+      "test_flat_oi",
+      "test_persistent_oi",
+      "test_persistent_price",
+      "test_public_event",
+      "test_repricing",
+      "test_two_event_outcome_family"
+    ],
+    "mode": "synthetic",
+    "performance_status": "FAIL",
+    "updates": 0
+  }
+]

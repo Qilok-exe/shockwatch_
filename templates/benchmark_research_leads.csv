@@ -1,0 +1,5 @@
+lead_id,event_group,issuer_or_topic,asset_type,period,status,source_url,notes
+panuwat_complaint,panuwat_2016,Incyte,options,2016,research_lead,https://www.sec.gov/enforcement-litigation/litigation-releases/lr-25170,Resolve historical contracts and exact trade and announcement times from primary records
+panuwat_civil_verdict,panuwat_2016,Incyte,options,2024 outcome report,research_lead,https://www.sec.gov/enforcement-litigation/litigation-releases/lr-25970,April 2024 civil jury liability report; not a criminal conviction or assertion of current appellate finality
+zina_conviction,zina_2016_2017,Six companies including Arm and HSN,shares,2016-2017 trades,research_lead,https://www.fca.org.uk/news/press-releases/mohammed-zina-found-guilty-insider-dealing-fraud,Extract each trade/event and group related observations; stock benchmark and later UK expansion
+september_11,historical_2001,Original AMR and UAL issuers plus SPX,mixed,2001,historical_test,https://www.9-11commission.gov/report/911Report.pdf,Historical replication/stress test; not a proven-insider positive; resolve historical issuers

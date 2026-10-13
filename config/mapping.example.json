@@ -1,0 +1,11 @@
+{
+  "description": "Illustration only. Invented export headings, not verified Bloomberg mnemonics.",
+  "columns": {
+    "instrument_id": "Your Underlying ID Column",
+    "contract_id": "Your Contract ID Column",
+    "iv": "Your IV Percent Column",
+    "delta": "Your Signed Delta Column"
+  },
+  "scales": {"iv": 0.01},
+  "constants": {"standard_deliverable": true}
+}

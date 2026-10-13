@@ -1,0 +1,198 @@
+[
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "2120cdef893ae73c5f8e",
+    "instrument_id": "UAL",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-08-09T17:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_repricing"
+    ],
+    "started_at": "2024-08-08T16:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "925da1e39d1c0ba60c18",
+    "instrument_id": "UAL",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-08-07T16:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_flow"
+    ],
+    "started_at": "2024-08-06T16:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "ca82dbc72cd60f04407b",
+    "instrument_id": "UAL",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-08-05T16:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_flow"
+    ],
+    "started_at": "2024-08-02T16:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "784a131c927989830ab7",
+    "instrument_id": "LMT",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-08-01T20:10:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_flow"
+    ],
+    "started_at": "2024-07-31T15:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "4e24eba043d6ea04de3a",
+    "instrument_id": "UAL",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-07-30T16:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_flow"
+    ],
+    "started_at": "2024-07-25T16:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "a3c29e36e5eb4bc7c5fe",
+    "instrument_id": "LMT",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-07-24T19:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_flow",
+      "A_exceptional_repricing",
+      "B_persistent_call"
+    ],
+    "started_at": "2024-07-23T15:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "544657483e2ad0a3db9a",
+    "instrument_id": "UAL",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-07-22T16:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_flow"
+    ],
+    "started_at": "2024-07-19T16:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "dbf9ef48374d92e91088",
+    "instrument_id": "UAL",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-07-18T18:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_flow"
+    ],
+    "started_at": "2024-07-17T16:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "93aa0765ba7a0e9628df",
+    "instrument_id": "UAL",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-07-01T16:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_flow"
+    ],
+    "started_at": "2024-06-28T16:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "767f562866679301db5f",
+    "instrument_id": "UAL",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-06-27T16:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_flow"
+    ],
+    "started_at": "2024-06-26T16:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "e2fe50a465a23b5a9a87",
+    "instrument_id": "UAL",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-06-18T19:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_flow"
+    ],
+    "started_at": "2024-06-14T16:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "fae628663642202e0a5d",
+    "instrument_id": "UAL",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-06-13T16:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_flow"
+    ],
+    "started_at": "2024-06-12T16:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "1b767cf31626532fcca0",
+    "instrument_id": "LMT",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-06-13T18:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_flow",
+      "A_exceptional_repricing",
+      "B_persistent_call"
+    ],
+    "started_at": "2024-06-07T15:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "b1d463fa6610ac3055f7",
+    "instrument_id": "UAL",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-06-07T17:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_repricing"
+    ],
+    "started_at": "2024-06-03T14:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "c485e6f0111bb2b00a82",
+    "instrument_id": "SPY",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-06-05T14:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_repricing"
+    ],
+    "started_at": "2024-06-03T14:40:00+00:00"
+  },
+  {
+    "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
+    "episode_id": "1cb2016d60c21acae680",
+    "instrument_id": "LMT",
+    "latest_transition": "closed",
+    "latest_transition_at": "2024-06-05T14:40:00+00:00",
+    "mode": "synthetic",
+    "original_opening_reasons": [
+      "A_exceptional_repricing"
+    ],
+    "started_at": "2024-06-03T14:40:00+00:00"
+  }
+]
