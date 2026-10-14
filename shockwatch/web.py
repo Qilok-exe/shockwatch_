@@ -16,10 +16,10 @@ from .common import dumps, save_json
 LIMIT = 10000
 PAGE_SIZE = 100
 TABLES = ("decisions", "events", "forecasts", "forecast_outcomes", "episode_outcomes", "runs", "experiments", "experiment_metrics", "data_quality_incidents", "contexts")
-NAV = (("index.html", "Status"), ("scans.html", "Scans"), ("instruments.html", "Instruments"),
-       ("episodes.html", "Episodes"), ("forecasts.html", "Forecasts / outcomes"),
-       ("experiments.html", "Experiments"), ("scenarios.html", "Synthetic scenarios"),
-       ("health.html", "Quality / jobs"), ("methods.html", "Methods / versions"))
+NAV = (("index.html", "OVERVIEW"), ("episodes.html", "ALERTS"),
+       ("instruments.html", "WATCHLIST"), ("forecasts.html", "FORECASTS"),
+       ("experiments.html", "EXPERIMENTS"), ("health.html", "SYSTEM"),
+       ("guide.html", "GUIDE"))
 
 
 def read_snapshot(db_path, limit=LIMIT):
@@ -147,12 +147,40 @@ def table(rows, columns, links=None):
 
 
 def page(title, body, snapshot):
+    """Shared command shell for local and public committed-record pages."""
     ident = snapshot["dataset"]
-    nav = "".join("<a href='"+url+"'>"+label+"</a>" for url, label in NAV)
+    current = {"Overview":"index.html", "Alerts":"episodes.html",
+               "Watchlist":"instruments.html", "Forecasts":"forecasts.html",
+               "Experiments":"experiments.html", "System":"health.html",
+               "How to read SHOCKWATCH":"guide.html"}.get(title)
+    nav = "".join("<a"+(" class='current' aria-current='page'" if url == current else "")+
+                  " href='"+url+"'>["+str(n)+"] "+label+"</a>" for n,(url,label) in enumerate(NAV,1))
     mode = ident.get("mode", "unknown")
-    notice = "Artificial observations and scenario results; real market predictive value is unmeasured." if mode == "synthetic" else "Evidence is limited to this dataset and its recorded availability assumptions."
-    return """<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>SHOCKWATCH — """+esc(title)+"""</title><link rel='stylesheet' href='style.css'></head><body><header><h1>SHOCKWATCH</h1><p class='label'>"""+esc(mode.upper())+" · "+esc(ident.get("dataset_id"))+"</p><p>"+esc(notice)+"</p><nav aria-label='Results pages'>"+nav+"</nav></header><main><h2>"+esc(title)+"</h2><p>Generated <time>"+esc(snapshot["generated_at"])+"</time> · Data as of "+esc(snapshot.get("watermark"))+" · Source "+esc(ident.get("source"))+"</p><p id='freshness' data-recorded='"+esc(snapshot.get("worker_recorded_at") or "")+"'>"+esc(snapshot["freshness"])+"</p>"+body+"</main><footer><p>Read-only dated snapshot. Page requests do not run the worker. <a href='publication.json'>Publication manifest</a> · <a href='exports/summary.json'>Stored summary</a></p></footer><script src='site.js'></script></body></html>"
+    source_version = ident.get("source_version") or ident.get("generator_version") or "unavailable"
+    model_version = (snapshot.get("models") or [{}])[0].get("model_version") or "0.2.0"
+    metadata = (("Dataset ID",ident.get("dataset_id")),("Mode",mode),("Source version",source_version),
+                ("Model version",model_version),("Build time",snapshot.get("generated_at")),
+                ("Data timestamp",snapshot.get("watermark")),("Deployment ID",snapshot.get("deployment_id")))
+    detail = "".join("<div><dt>"+esc(k)+"</dt><dd>"+esc(v)+"</dd></div>" for k,v in metadata)
+    notice = "SYNTHETIC DATA // SOFTWARE BEHAVIOR ONLY" if mode == "synthetic" else "DATASET EVIDENCE // CHECK COVERAGE"
+    return ("<!doctype html><html lang='en'><head><meta charset='utf-8'>"
+            "<meta name='viewport' content='width=device-width,initial-scale=1'>"
+            "<title>SHOCKWATCH // "+esc(title)+"</title><link rel='stylesheet' href='style.css'></head>"
+            "<body><input class='effects-check' id='effects-off' type='checkbox' aria-label='Disable scanlines and glow'>"
+            "<div class='terminal-screen'><a class='skip' href='#content'>Skip to content</a><header>"
+            "<div class='terminal-head'><h1 class='glow'>SHOCKWATCH TERMINAL // BUILD "+esc(model_version)+"</h1>"
+            "<label class='effects-label' for='effects-off'><span class='effects-mark' aria-hidden='true'></span> DISABLE CRT EFFECTS</label></div>"
+            "<hr class='terminal-rule'><nav class='command-nav' aria-label='Main commands'>"+nav+"</nav>"
+            "<div class='sub-nav'><a href='scans.html'>SCANS</a><a href='scenarios.html'>SCENARIOS</a>"
+            "<a href='methods.html'>METHODS</a></div><hr class='terminal-rule'>"
+            "<p class='prompt'>COMMAND &gt; <span class='cursor' aria-hidden='true'></span></p></header>"
+            "<main id='content'><h2>"+esc(title.upper())+"</h2><div class='screen-meta'>"+esc(notice)+
+            " <details><summary>BUILD / DATA DETAILS</summary><dl class='summary'>"+detail+"</dl></details>"
+            "<p id='freshness' data-recorded='"+esc(snapshot.get("worker_recorded_at") or "")+"'>"+
+            esc(snapshot.get("freshness"))+"</p></div>"+body+"</main><footer>"
+            "<p>READ-ONLY RECORD // PAGE REQUESTS NEVER RUN THE WORKER // "
+            "<a href='publication.json'>PUBLICATION</a> // <a href='exports/summary.json'>SUMMARY JSON</a></p>"
+            "</footer></div><script src='site.js'></script></body></html>")
 
 
 def _csv(rows):
@@ -288,6 +316,25 @@ def render_site(db_path, directory, scenario_file=None, experiment_file=None, li
         outcome = latest.get(f.get("forecast_id"), {})
         forecasts.append({**f,"outcome_status":outcome.get("status", "pending"),"observed_variance":outcome.get("observed_variance"),"qlike":outcome.get("qlike",(outcome.get("loss") or {}).get("qlike")),"target_coverage":outcome.get("target_coverage"),"outcome_available_at":outcome.get("outcome_available_at")})
     paginated("forecasts", "Immutable forecasts and later outcomes", forecasts, [("instrument_id","Instrument"),("issued_at","Issued in dataset clock"),("recorded_at","Recorded wall time"),("target_start","Future target start"),("target_end","Target end"),("horizon_id","Horizon"),("method","Method"),("forecast_status","Forecast state"),("predicted_variance","Forecast variance"),("observed_variance","Observed variance"),("outcome_status","Outcome state"),("target_coverage","Coverage"),("qlike","QLIKE")])
+    # Keep the scheduled local renderer on the same read-only command shell.
+    from .site_views import guide, overview
+    local_scans=[]
+    for row in scans:
+        copy=dict(row)
+        transition=copy.get("transition_at_scan") or []
+        copy["transition_at_scan"]=transition[0] if isinstance(transition,list) and transition else transition or None
+        if copy.get("episode_id"):
+            copy["_local_episode_page"]="episode-"+slug(copy["episode_id"])+".html"
+        local_scans.append(copy)
+    local_episodes=[{"instrument_id":e.get("instrument_id"),"latest_transition":"closed" if e.get("state")=="closed" else "updated",
+                     "latest_transition_at":e.get("latest_update")} for e in episodes]
+    local_summary={"mode":ident.get("mode"),"data_timestamp":snapshot.get("watermark"),
+                   "data_health":snapshot["health"].get("status"),"active_episodes":len(active_now),
+                   "forecast_model_comparison":forecast_note,"notification_status":notification_status,
+                   "last_successful_worker_run":successful_run,"deployment_id":snapshot.get("deployment_id"),
+                   "model_version":snapshot["models"][0].get("model_version") if snapshot["models"] else "0.2.0"}
+    pages["index.html"]=("Overview",overview(local_scans,local_episodes,forecasts,local_summary,snapshot))
+    pages["guide.html"]=("How to read SHOCKWATCH",guide())
     if experiment:
         save_json(staging/"exports/experiment.json",experiment)
         save_json(staging/"exports/experiment_manifest.json",experiment["manifest"])

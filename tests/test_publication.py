@@ -69,6 +69,56 @@ class PublicSiteTests(unittest.TestCase):
                     export_public_site("unused.db",directory)
             self.assertEqual(list(Path(directory).iterdir()),[])
 
+    def test_terminal_finding_uses_stored_score_and_reviewed_threshold(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with patch("shockwatch.publication.read_snapshot",return_value=snapshot()):
+                export_public_site("unused.db",directory)
+            root=Path(directory)
+            home=(root/"index.html").read_text(encoding="utf-8")
+            scans=(root/"scans.html").read_text(encoding="utf-8")
+            guide=(root/"guide.html").read_text(encoding="utf-8")
+            style=(root/"style.css").read_text(encoding="utf-8")
+            self.assertIn("NEW EPISODE // UAL // ROUTE A",home)
+            self.assertIn("8.00 / 6.50",home)
+            self.assertIn("It does not identify a trader",home)
+            self.assertIn("CURRENT DECISION EVIDENCE",scans)
+            self.assertIn("ORIGINAL OPENING REASONS",scans)
+            self.assertIn("VIEW RAW RECORD",scans)
+            self.assertIn("HOW TO READ SHOCKWATCH",guide)
+            self.assertIn("CUSUM persistence",guide)
+            self.assertIn("id='effects-off'",home)
+            self.assertIn("#effects-off:checked+.terminal-screen:before{display:none}",style)
+            self.assertNotIn("AI COMMENTARY",home)
+            self.assertNotIn("linear-gradient",style)
+
+    def test_quiet_summary_and_failed_scenarios_are_not_misrepresented(self):
+        quiet=snapshot()
+        quiet["tables"]["events"]=[]
+        decision=quiet["tables"]["decisions"][0]
+        decision["scores"]={"flow_call":1.82,"flow_put":0.4,"price":0.5}
+        decision["current_decision_evidence"]=[]
+        decision["active_episode"]=None
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            scenarios=root/"scenario_input.json"
+            scenarios.write_text(json.dumps({"dataset_id":"fixture","responses":[{"scenario_id":"test_case",
+                "expected_outcome":"expected_opening","result":"FAIL","reason":"No opening in reset-state replay"}]}),encoding="utf-8")
+            # Input packets are private build inputs, outside the public file allowlist.
+            public=root/"public"
+            with patch("shockwatch.publication.read_snapshot",return_value=quiet):
+                export_public_site("unused.db",public,scenario_file=scenarios)
+            home=(public/"index.html").read_text(encoding="utf-8")
+            results=(public/"scenarios.html").read_text(encoding="utf-8")
+            self.assertIn("NO ACTIONABLE ANOMALY DETECTED",home)
+            self.assertIn("1.82 robust anomaly units",home)
+            self.assertIn("6.50 exceptional threshold",home)
+            self.assertIn("FAIL 1",results)
+            self.assertIn("FAILED SCENARIOS",results)
+            self.assertIn("No opening in reset-state replay",results)
+            self.assertTrue(validate_public_site(public)["passed"])
+            (public/"index.html").write_text(home+"<a href='guide.html#missing'>bad fragment</a>",encoding="utf-8")
+            self.assertIn("missing fragment",str(validate_public_site(public)["broken_or_private"]))
+
 
 if __name__ == "__main__":
     unittest.main()

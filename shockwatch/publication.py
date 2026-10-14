@@ -12,10 +12,11 @@ from datetime import datetime, timezone
 
 from .common import finite
 from .theme import CSS
-from .web import _csv, esc, page, read_snapshot, table
+from .web import _csv, page, read_snapshot
+from .site_views import build_pages
 
 PUBLIC_SCORE_FIELDS = ("flow_call", "flow_put", "price", "oi_call", "oi_put")
-PUBLIC_FILES = {"index.html", "scans.html", "instruments.html", "episodes.html", "forecasts.html",
+PUBLIC_FILES = {"index.html", "guide.html", "scans.html", "instruments.html", "episodes.html", "forecasts.html",
                 "experiments.html", "scenarios.html", "health.html", "methods.html", "style.css", "site.js",
                 "publication.json", "publication_manifest.json", ".nojekyll", "exports/summary.json",
                 "exports/scans.json", "exports/scans.csv", "exports/episodes.json", "exports/episodes.csv",
@@ -40,11 +41,14 @@ class _Links(HTMLParser):
     def __init__(self):
         super().__init__()
         self.links = []
+        self.ids = set()
 
     def handle_starttag(self, tag, attrs):
         for key, value in attrs:
             if key in {"href", "src"} and value:
                 self.links.append(value)
+            if key == "id" and value:
+                self.ids.add(value)
 
 
 def validate_public_site(directory):
@@ -78,9 +82,14 @@ def validate_public_site(directory):
                     if parsed.scheme or parsed.netloc or link.startswith("/"):
                         external.append(f"{item}: {link}")
                         continue
-                    target = (path.parent / unquote(parsed.path)).resolve()
+                    target = (path.parent / unquote(parsed.path)).resolve() if parsed.path else path
                     if root not in target.parents and target != root or not target.is_file():
                         broken.append(f"{item}: {link}")
+                    elif parsed.fragment and target.suffix.lower() == ".html":
+                        target_parser = _Links()
+                        target_parser.feed(target.read_text(encoding="utf-8"))
+                        if unquote(parsed.fragment) not in target_parser.ids:
+                            broken.append(f"{item}: missing fragment {link}")
     return {"passed": not (missing or unexpected or broken or external or hash_mismatch), "files": len(files),
             "missing": missing, "unexpected": unexpected, "broken_or_private": broken, "non_relative_links": external,
             "hash_mismatch":hash_mismatch}
@@ -140,7 +149,9 @@ def export_public_site(db_path, directory, scenario_file=None, experiment_file=N
         first=next((e for e in group if e.get("type")=="opened"),group[0])
         episodes.append({"dataset_id":dataset,"mode":"synthetic","episode_id":eid,"instrument_id":first.get("instrument_id"),
             "started_at":first.get("started_at") or first.get("decision_at"),"original_opening_reasons":first.get("reasons",[]),
-            "latest_transition":group[-1].get("type"),"latest_transition_at":group[-1].get("decision_at")})
+            "latest_transition":group[-1].get("type"),"latest_transition_at":group[-1].get("decision_at"),
+            "state":"closed" if group[-1].get("type")=="closed" else "active",
+            "severity":group[-1].get("notified_severity")})
     episodes.sort(key=lambda r:r["started_at"] or "",reverse=True)
     forecasts=[]
     outcomes={o.get("forecast_id"):o for o in snapshot["latest_forecast_outcomes"]}
@@ -203,20 +214,7 @@ def export_public_site(db_path, directory, scenario_file=None, experiment_file=N
     if present-PUBLIC_FILES:
         raise ValueError("Public directory contains non-allowlisted files")
     (root/"exports").mkdir(exist_ok=True)
-    pages={}
-    intro="<p>A scan is one decision for one instrument. An episode groups related suspicious scans. Severity is an anomaly score, not an insider-trading probability. Forecasts are separate from anomaly alerts. Synthetic results do not establish market predictive value.</p>"
-    landing="<h3>Current state</h3><dl class='summary'>"+"".join("<div><dt>"+esc(k.replace('_',' '))+"</dt><dd>"+esc(v)+"</dd></div>" for k,v in summary.items() if k not in {"synthetic_limit"})+"</dl><h3>What am I looking at?</h3>"+intro
-    landing+="<p><a href='scans.html'>Inspect scans</a> · <a href='episodes.html'>Episode transitions</a> · <a href='experiments.html'>Frozen comparison</a> · <a href='scenarios.html'>Scenario checks</a></p>"
-    pages["index.html"]=("Status",landing)
-    scan_cols=[("decision_at","Decision time"),("instrument_id","Instrument"),("flow_call_score","Call / threshold"),("flow_put_score","Put / threshold"),("price_score","Price / threshold"),("current_decision_evidence","Current decision evidence"),("original_episode_opening_reasons","Original episode-opening reasons"),("current_episode_state","Current episode state"),("transition_at_scan","Transition at this scan"),("quality_reasons","Quality")]
-    pages["scans.html"]=("Scans",intro+table(scans[:300],scan_cols)+"<p>Latest 300 shown. <a href='exports/scans.json'>JSON</a> · <a href='exports/scans.csv'>CSV</a></p>")
-    pages["instruments.html"]=("Instruments",table([{"instrument_id":s,"latest_decision":d["decision_at"],"episode_state":d["current_episode_state"]} for s,d in sorted(recent.items())],[("instrument_id","Instrument"),("latest_decision","Latest decision"),("episode_state","Episode state")]))
-    pages["episodes.html"]=("Episodes",table(episodes,[("episode_id","Episode"),("instrument_id","Instrument"),("started_at","Start"),("original_opening_reasons","Original opening reasons"),("latest_transition","Latest transition"),("latest_transition_at","Transition time")])+"<p><a href='exports/episodes.json'>JSON</a> · <a href='exports/episodes.csv'>CSV</a></p>")
-    pages["forecasts.html"]=("Forecasts and outcomes","<p>Forecasts are separate from anomaly alerts. Outcomes attach after the future target closes.</p>"+table(forecasts[:300],[("issued_at","Issued"),("instrument_id","Instrument"),("method","Method"),("target_start","Target start"),("target_end","Target end"),("predicted_variance","Forecast variance"),("observed_variance","Observed variance"),("outcome_status","Outcome"),("qlike","QLIKE")])+"<p><a href='exports/forecasts.json'>JSON</a> · <a href='exports/forecasts.csv'>CSV</a></p>")
-    pages["experiments.html"]=("Experiments","<p>"+esc(forecast_note)+" Synthetic software comparisons only. Execution, invariant checks and detector performance are distinct. Unlabelled openings are not population false positives.</p>"+table(comparisons,[("method","Detector"),("execution","Execution"),("performance_status","Performance"),("expected_positive_families","Expected positive families"),("detected_positive_families","Detected"),("missed_positive_families","Missed"),("expected_negative_families","Expected negatives"),("false_openings","False openings"),("updates","Updates"),("closures","Closures"),("episode_rate_per_portfolio_week","Episodes / week"),("coverage_exclusions","Coverage exclusions"),("detection_latency_wall_minutes","Latency / min"),("miss_reasons","Miss reasons")])+"<p><a href='exports/experiments.json'>JSON</a> · <a href='exports/experiments.csv'>CSV</a></p>")
-    pages["scenarios.html"]=("Synthetic scenarios","<p>Independent reset-state replay scores scenario response. Chronological episodes may carry across adjacent fixtures. PASS means software expectation passed, not market skill.</p>"+table(scenario_rows,[("scenario_id","Scenario"),("expected_outcome","Expected"),("result","Result"),("reason","Reason"),("isolated_opened_events","Isolated openings"),("isolated_updated_events","Isolated updates"),("chronological_openings","Chronological openings"),("chronological_updates","Chronological updates")])+"<p><a href='exports/scenarios.json'>JSON</a> · <a href='exports/scenarios.csv'>CSV</a></p>")
-    pages["health.html"]=("Data health","<dl><dt>Status</dt><dd>"+esc(summary["data_health"])+"</dd><dt>Last successful worker run</dt><dd>"+esc(summary["last_successful_worker_run"])+"</dd><dt>Notification status</dt><dd>"+esc(summary["notification_status"])+"</dd></dl>")
-    pages["methods.html"]=("Methods","<p>Route A requires exceptional flow or repricing at the displayed threshold. Route B requires current moderate same-side flow, accumulated CUSUM and current pricing or a fresh daily OI release. Quiet closure counts fully observed, low-score trading minutes. Missing intervals freeze the timer.</p>"+intro+"<p>All navigation and downloads are static committed records. Opening a page never starts a worker or changes the database.</p>")
+    pages=build_pages(scans,episodes,forecasts,comparisons,scenario_rows,summary,snapshot)
     for filename,(title,body) in pages.items():
         _write_utf8(root/filename,page(title,body,snapshot))
     for name,values in (("scans",scans),("episodes",episodes),("forecasts",forecasts),("experiments",comparisons),("scenarios",scenario_rows)):

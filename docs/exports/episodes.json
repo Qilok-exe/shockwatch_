@@ -9,7 +9,9 @@
     "original_opening_reasons": [
       "A_exceptional_repricing"
     ],
-    "started_at": "2024-08-08T16:40:00+00:00"
+    "severity": 18.414282004144326,
+    "started_at": "2024-08-08T16:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -21,7 +23,9 @@
     "original_opening_reasons": [
       "A_exceptional_flow"
     ],
-    "started_at": "2024-08-06T16:40:00+00:00"
+    "severity": 5.7401402673598385,
+    "started_at": "2024-08-06T16:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -33,7 +37,9 @@
     "original_opening_reasons": [
       "A_exceptional_flow"
     ],
-    "started_at": "2024-08-02T16:40:00+00:00"
+    "severity": 5.332020699331778,
+    "started_at": "2024-08-02T16:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -45,7 +51,9 @@
     "original_opening_reasons": [
       "A_exceptional_flow"
     ],
-    "started_at": "2024-07-31T15:40:00+00:00"
+    "severity": 1.9441244129130284,
+    "started_at": "2024-07-31T15:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -57,7 +65,9 @@
     "original_opening_reasons": [
       "A_exceptional_flow"
     ],
-    "started_at": "2024-07-25T16:40:00+00:00"
+    "severity": 5.19986555686826,
+    "started_at": "2024-07-25T16:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -71,7 +81,9 @@
       "A_exceptional_repricing",
       "B_persistent_call"
     ],
-    "started_at": "2024-07-23T15:40:00+00:00"
+    "severity": 6.194889305448366,
+    "started_at": "2024-07-23T15:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -83,7 +95,9 @@
     "original_opening_reasons": [
       "A_exceptional_flow"
     ],
-    "started_at": "2024-07-19T16:40:00+00:00"
+    "severity": 5.556412946453697,
+    "started_at": "2024-07-19T16:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -95,7 +109,9 @@
     "original_opening_reasons": [
       "A_exceptional_flow"
     ],
-    "started_at": "2024-07-17T16:40:00+00:00"
+    "severity": 5.213012806194184,
+    "started_at": "2024-07-17T16:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -107,7 +123,9 @@
     "original_opening_reasons": [
       "A_exceptional_flow"
     ],
-    "started_at": "2024-06-28T16:40:00+00:00"
+    "severity": 5.3684228921142205,
+    "started_at": "2024-06-28T16:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -119,7 +137,9 @@
     "original_opening_reasons": [
       "A_exceptional_flow"
     ],
-    "started_at": "2024-06-26T16:40:00+00:00"
+    "severity": 5.324039901481792,
+    "started_at": "2024-06-26T16:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -131,7 +151,9 @@
     "original_opening_reasons": [
       "A_exceptional_flow"
     ],
-    "started_at": "2024-06-14T16:40:00+00:00"
+    "severity": 5.6982409173909945,
+    "started_at": "2024-06-14T16:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -143,7 +165,9 @@
     "original_opening_reasons": [
       "A_exceptional_flow"
     ],
-    "started_at": "2024-06-12T16:40:00+00:00"
+    "severity": 5.27062398826814,
+    "started_at": "2024-06-12T16:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -157,7 +181,9 @@
       "A_exceptional_repricing",
       "B_persistent_call"
     ],
-    "started_at": "2024-06-07T15:40:00+00:00"
+    "severity": 6.043810877770394,
+    "started_at": "2024-06-07T15:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -169,7 +195,9 @@
     "original_opening_reasons": [
       "A_exceptional_repricing"
     ],
-    "started_at": "2024-06-03T14:40:00+00:00"
+    "severity": 18.531977282653262,
+    "started_at": "2024-06-03T14:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -181,7 +209,9 @@
     "original_opening_reasons": [
       "A_exceptional_repricing"
     ],
-    "started_at": "2024-06-03T14:40:00+00:00"
+    "severity": 8.472878485375714,
+    "started_at": "2024-06-03T14:40:00+00:00",
+    "state": "closed"
   },
   {
     "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
@@ -193,6 +223,8 @@
     "original_opening_reasons": [
       "A_exceptional_repricing"
     ],
-    "started_at": "2024-06-03T14:40:00+00:00"
+    "severity": 8.38599876541902,
+    "started_at": "2024-06-03T14:40:00+00:00",
+    "state": "closed"
   }
 ]
