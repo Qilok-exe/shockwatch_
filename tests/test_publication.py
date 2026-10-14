@@ -112,6 +112,7 @@ class PublicSiteTests(unittest.TestCase):
             self.assertIn("NO ACTIONABLE ANOMALY DETECTED",home)
             self.assertIn("1.82 robust anomaly units",home)
             self.assertIn("6.50 exceptional threshold",home)
+            self.assertIn("EPISODE RECORDS</a>",home)
             self.assertIn("FAIL 1",results)
             self.assertIn("FAILED SCENARIOS",results)
             self.assertIn("No opening in reset-state replay",results)

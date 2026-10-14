@@ -145,7 +145,9 @@ def overview(scans, episodes, forecasts, summary, snapshot):
                 threshold = top[1]["flow_threshold" if top[2].startswith("flow") else "price_threshold"]
                 body += "The highest current anomaly is "+esc(top[1]["instrument_id"])+" "+esc(score_name(top[2]))+" at "+number(top[0])+" robust anomaly units. "
                 body += (("This is "+("below" if top[0]<threshold else "at or above")+" the "+number(threshold)+" exceptional threshold.") if threshold is not None else "The exceptional threshold is unavailable in this snapshot.")
-            body += "</p>"+anchor("INSPECT SUPPORTING SCANS","scans.html")+"</section>"
+            episode_target = episode_link(latest_episode) if latest_episode and latest_episode.get("episode_id") else "episodes.html"
+            episode_label = "LATEST EPISODE RECORD" if latest_episode and latest_episode.get("episode_id") else "EPISODE RECORDS"
+            body += "</p>"+anchor("INSPECT SUPPORTING SCANS","scans.html")+anchor(episode_label,episode_target)+"</section>"
     previous = {}
     for row in scans:
         if row["instrument_id"] in recent and row is not recent[row["instrument_id"]]:
