@@ -5,7 +5,7 @@ demonstration uses **synthetic data only**. Its alerts are anomaly scores, not
 insider-trading probabilities, and these fixtures do not establish market
 predictive value.
 
-[Open the public static results](https://qilok1.github.io/shockwatch_/)
+[Open the public static results](https://qilok-exe.github.io/shockwatch_/)
 
 The public URL serves the sanitized `/docs` build from this repository's `main`
 branch when GitHub Pages is configured. Pages needs no Python or backend in the
