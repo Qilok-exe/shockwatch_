@@ -24,6 +24,11 @@ PUBLIC_FILES = {"index.html", "scans.html", "instruments.html", "episodes.html",
 PRIVATE_TEXT = re.compile(r"(?i)(?:[A-Z]:[\\/]|/Users/|/home/|127\.0\.0\.1|localhost|\.env|telegram|api[_-]?key|secret|password|token|@[\w.-]+\.[a-z]{2,})")
 
 
+def _write_utf8(path, value):
+    """Keep public bytes identical to manifest hashes and Git blobs on Windows."""
+    path.write_bytes(value.encode("utf-8"))
+
+
 def _identity(value):
     text = str(value or "unavailable")
     if not re.fullmatch(r"[A-Za-z0-9_.:-]{1,150}", text):
@@ -213,18 +218,18 @@ def export_public_site(db_path, directory, scenario_file=None, experiment_file=N
     pages["health.html"]=("Data health","<dl><dt>Status</dt><dd>"+esc(summary["data_health"])+"</dd><dt>Last successful worker run</dt><dd>"+esc(summary["last_successful_worker_run"])+"</dd><dt>Notification status</dt><dd>"+esc(summary["notification_status"])+"</dd></dl>")
     pages["methods.html"]=("Methods","<p>Route A requires exceptional flow or repricing at the displayed threshold. Route B requires current moderate same-side flow, accumulated CUSUM and current pricing or a fresh daily OI release. Quiet closure counts fully observed, low-score trading minutes. Missing intervals freeze the timer.</p>"+intro+"<p>All navigation and downloads are static committed records. Opening a page never starts a worker or changes the database.</p>")
     for filename,(title,body) in pages.items():
-        (root/filename).write_text(page(title,body,snapshot),encoding="utf-8")
+        _write_utf8(root/filename,page(title,body,snapshot))
     for name,values in (("scans",scans),("episodes",episodes),("forecasts",forecasts),("experiments",comparisons),("scenarios",scenario_rows)):
-        (root/"exports"/(name+".json")).write_text(json.dumps(values,sort_keys=True,indent=2,allow_nan=False)+"\n",encoding="utf-8")
-        (root/"exports"/(name+".csv")).write_text(_csv(values),encoding="utf-8")
-    (root/"exports/summary.json").write_text(json.dumps(summary,sort_keys=True,indent=2)+"\n",encoding="utf-8")
-    (root/"style.css").write_text(CSS,encoding="utf-8")
-    (root/"site.js").write_text("",encoding="utf-8")
-    (root/".nojekyll").write_text("",encoding="utf-8")
-    (root/"publication.json").write_text(json.dumps({"dataset_id":dataset,"mode":"synthetic","generated_at":generated,"data_asof":summary["data_timestamp"]},indent=2)+"\n",encoding="utf-8")
+        _write_utf8(root/"exports"/(name+".json"),json.dumps(values,sort_keys=True,indent=2,allow_nan=False)+"\n")
+        _write_utf8(root/"exports"/(name+".csv"),_csv(values))
+    _write_utf8(root/"exports/summary.json",json.dumps(summary,sort_keys=True,indent=2)+"\n")
+    _write_utf8(root/"style.css",CSS)
+    _write_utf8(root/"site.js","")
+    _write_utf8(root/".nojekyll","")
+    _write_utf8(root/"publication.json",json.dumps({"dataset_id":dataset,"mode":"synthetic","generated_at":generated,"data_asof":summary["data_timestamp"]},indent=2)+"\n")
     hashes={p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob("*") if p.is_file() and p.name!="publication_manifest.json"}
     manifest={"built_at":generated,"dataset_id":dataset,"mode":"synthetic","source_version":source_version,"model_version":model_version,"file_hashes":hashes}
-    (root/"publication_manifest.json").write_text(json.dumps(manifest,sort_keys=True,indent=2)+"\n",encoding="utf-8")
+    _write_utf8(root/"publication_manifest.json",json.dumps(manifest,sort_keys=True,indent=2)+"\n")
     validation=validate_public_site(root)
     if not validation["passed"]:
         raise ValueError("Public site validation failed: "+json.dumps(validation))

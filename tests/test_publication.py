@@ -56,6 +56,9 @@ class PublicSiteTests(unittest.TestCase):
             self.assertEqual(scans[0]["original_episode_opening_reasons"],["A_exceptional_flow"])
             self.assertTrue((Path(directory)/".nojekyll").is_file())
             self.assertNotIn(b"\r\r\n",(Path(directory)/"exports/scans.csv").read_bytes())
+            for public_file in Path(directory).rglob("*"):
+                if public_file.is_file():
+                    self.assertNotIn(b"\r\n",public_file.read_bytes(),str(public_file))
             (Path(directory)/"index.html").write_text("<a href='/shockwatch_/scans.html'>bad</a>",encoding="utf-8")
             self.assertFalse(validate_public_site(directory)["passed"])
 

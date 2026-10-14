@@ -5,7 +5,7 @@
   "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
   "deployment_id": "aa97a914c4328212df08ad3d71177afe3ddec07e4740498e745a1f889b844ba5",
   "forecast_model_comparison": "Seasonal EWMA -7.1233; HAR -7.0841; 77 paired targets. Lower QLIKE is better. Bootstrap interval crosses zero; no statistically reliable winner.",
-  "generated_at": "2026-10-13T15:56:12.467496+00:00",
+  "generated_at": "2026-10-14T20:19:27.156019+00:00",
   "highest_current_anomaly": "SPY \u00b7 1.62",
   "last_successful_worker_run": "2026-10-13T15:48:35.384907+00:00",
   "latest_transition": "closed \u00b7 UAL \u00b7 2024-08-09T17:40:00+00:00",
