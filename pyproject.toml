@@ -9,6 +9,9 @@ description = "Auditable stock and options anomaly research and monitoring pilot
 requires-python = ">=3.11"
 dependencies = ["numpy>=2.0,<3", "pandas>=2.2,<3", "tzdata>=2024.1"]
 
+[project.optional-dependencies]
+yahoo = ["yfinance>=1.7,<2", "pandas_market_calendars>=5.5,<6"]
+
 [project.scripts]
 shockwatch = "shockwatch.cli:main"
 

@@ -1,6 +1,7 @@
 {
-  "dataset_id": "synthetic_raw_raw-scenarios-2_1537_160_1",
-  "mode": "synthetic",
-  "generated_at": "2026-10-14T20:46:08.013613+00:00",
-  "data_asof": "2024-08-14T20:10:00+00:00"
+  "dataset_id": "paper_yahoo_20261014T215532Z",
+  "mode": "paper",
+  "source": "yahoo",
+  "data_asof": "2026-10-14T20:00:00+00:00",
+  "worker_completed_at": "2026-10-14T22:17:16.216829+00:00"
 }

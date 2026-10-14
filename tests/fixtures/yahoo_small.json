@@ -1,0 +1,17 @@
+{
+  "exchange_timezone": "America/New_York",
+  "history": [
+    {"at": "2026-10-13T09:30:00-04:00", "Open": 100.0, "High": 101.0, "Low": 99.0, "Close": 100.5, "Adj Close": 100.2, "Volume": 10, "Dividends": 0.0, "Stock Splits": 0.0},
+    {"at": "2026-10-13T09:35:00-04:00", "Open": 100.5, "High": 101.0, "Low": 100.0, "Close": 100.8, "Adj Close": 100.5, "Volume": null, "Dividends": 0.0, "Stock Splits": 0.0},
+    {"at": "2026-10-13T09:40:00-04:00", "Open": 100.8, "High": 100.7, "Low": 100.0, "Close": 100.5, "Adj Close": 100.2, "Volume": 5, "Dividends": 0.0, "Stock Splits": 0.0},
+    {"at": "2026-10-13T09:45:00-04:00", "Open": 100.5, "High": 101.0, "Low": 100.0, "Close": 100.6, "Adj Close": 100.3, "Volume": 7, "Dividends": 0.0, "Stock Splits": 0.0}
+  ],
+  "expiry": "2026-10-16",
+  "calls": [
+    {"contractSymbol": "SPY261016C00100000", "lastTradeDate": "2026-10-13T15:00:00Z", "strike": 100.0, "lastPrice": 2.0, "bid": 1.9, "ask": 2.1, "volume": null, "openInterest": 50, "impliedVolatility": 0.2, "inTheMoney": true, "contractSize": "REGULAR"},
+    {"contractSymbol": "SPY261016C00105000", "lastTradeDate": "2026-10-13T15:00:00Z", "strike": 105.0, "lastPrice": 1.0, "bid": 1.2, "ask": 1.1, "volume": 1, "openInterest": 20, "impliedVolatility": 0.21, "inTheMoney": false, "contractSize": "REGULAR"}
+  ],
+  "puts": [
+    {"contractSymbol": "SPY261016P00100000", "lastTradeDate": "2026-10-13T15:00:00Z", "strike": 100.0, "lastPrice": 1.8, "bid": 1.7, "ask": 1.9, "volume": 3, "openInterest": null, "impliedVolatility": 0.22, "inTheMoney": false, "contractSize": "REGULAR"}
+  ]
+}

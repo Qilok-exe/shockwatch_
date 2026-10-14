@@ -1,9 +1,9 @@
 # SHOCKWATCH
 
-SHOCKWATCH is a read-only stock and options anomaly research monitor. The current
-demonstration uses **synthetic data only**. Its alerts are anomaly scores, not
-insider-trading probabilities, and these fixtures do not establish market
-predictive value.
+SHOCKWATCH is a read-only stock and options anomaly research monitor. The public
+landing page now shows a separate **paper-Yahoo experimental** observation run.
+Earlier synthetic software evidence remains available in a dated archive. No
+market predictive validity has been established; the paper run places no orders.
 
 [Open the public static results](https://qilok-exe.github.io/shockwatch_/)
 
@@ -33,13 +33,43 @@ The active Windows `Shockwatch-Synthetic` task on the development laptop uses a
 separate original project checkout and runtime. Repository publication does not
 register, rename, disable, or run that task. Physical sleep, wake, reboot,
 logged-out operation and genuine missed-run recovery have not been verified.
-`Shockwatch-Pilot` is not installed because real-data prerequisites are absent.
+`Shockwatch-Pilot` is not installed because reviewed real-data detector prerequisites are absent.
+
+## Paper-Yahoo observation run
+
+Yahoo ingestion has its own `paper_yahoo_<UTC timestamp>` dataset, SQLite file,
+and runtime. Install the optional adapter dependency with `python -m pip install
+".[yahoo]"`. The source adapter retrieves at most 60 days of five-minute stock
+history on first use, then five days for incremental catch-up, and each currently
+listed option expiry during an hourly poll. It does not provide historical expired
+chains or dependable vendor delta. Stock-only EWMA variance forecasts can run
+after 120 contiguous adjusted returns. Flow, pricing and OI alert routes remain
+unevaluated until real-data history and calibration support them. A missing score
+never becomes zero or an alert.
+
+The first private runtime can be reproduced with:
+
+```powershell
+python -m shockwatch.paper_yahoo --db work\paper-yahoo-<timestamp>\paper.db --dataset-id paper_yahoo_<timestamp> --evidence ..\implementation_evidence\paper_yahoo_<date> --force
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\publish-paper-yahoo.ps1 -Runtime work\paper-yahoo-<timestamp>
+python -m shockwatch.paper_publication validate --docs docs
+```
+
+The publication script copies only bounded derived summaries, retains the
+synthetic archive, validates all relative links and hashes, and never commits.
+The separate `Shockwatch-Paper-Yahoo` task can be installed after a successful
+manual run with `scripts/install-paper-yahoo-task.ps1 -Runtime <runtime>`.
+It polls only during the regular exchange window, suppresses overlapping wakes,
+pauses after a source failure, and regenerates a private static site only when a
+new completed decision interval appears. Git publication remains a manual step.
+See [PAPER_YAHOO.md](PAPER_YAHOO.md) for the quality and data boundary.
 
 ## Manual public publication
 
-The public exporter has an explicit file and field allowlist. It accepts
-synthetic mode and refuses real-data modes until an approved derived-summary
-publication policy exists. It never copies SQLite, raw vendor inputs, logs,
+Both public exporters have explicit file and field allowlists. The original
+synthetic exporter refuses real-data modes; the paper-Yahoo exporter accepts only
+successful runs from the separate paper database. Neither copies SQLite, raw
+vendor inputs, logs,
 credentials, local paths or notification destinations into `/docs`.
 
 From this repository, regenerate and validate the static site with one command
@@ -49,12 +79,14 @@ From this repository, regenerate and validate the static site with one command
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\publish-pages.ps1 -Runtime work\synthetic-demo\runtime -Experiment work\synthetic-demo\experiment\packet.json -Scenarios work\synthetic-demo\scenario_evaluation.json
 ```
 
-The script writes `/docs`, checks each internal link and required file, and
+The synthetic script writes `/docs` for synthetic-only builds. The paper script
+above is the publication path for the current paper landing page. Each checks
+internal links and required files, and
 verifies the publication-manifest hashes. It makes **no Git commit or push**.
 For validation alone, run:
 
 ```powershell
-python -m shockwatch.publication validate --docs docs
+python -m shockwatch.paper_publication validate --docs docs
 ```
 
 To make the site public, commit and push reviewed `/docs` changes deliberately.
